@@ -1,0 +1,5 @@
+@model Learner
+@{ ViewData["Title"] = "Create Learner"; ViewData["SubmitLabel"] = "Create"; }
+<h1>Create Learner</h1>
+<form asp-action="Create" method="post" class="mt-3"><partial name="_Form" model="Model" /></form>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

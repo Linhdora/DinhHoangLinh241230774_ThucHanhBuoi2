@@ -1,0 +1,20 @@
+@model IEnumerable<Learner>
+@{ ViewData["Title"] = "Learner List"; }
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Learner List</h1>
+    <a asp-action="Create" class="btn btn-primary">Create New Learner</a>
+</div>
+@if (TempData["DeleteError"] is string error) { <div class="alert alert-warning">@error</div> }
+<div class="table-responsive"><table class="table table-striped">
+    <thead><tr><th>Mã</th><th>Tên</th><th>Họ</th><th>Ngành</th><th>Ngày nhập học</th><th>Chức năng</th></tr></thead>
+    <tbody>
+    @foreach (var learner in Model)
+    {
+        <tr>
+            <td>@learner.LearnerID</td><td>@learner.FirstMidName</td><td>@learner.LastName</td><td>@learner.Major.MajorName</td><td>@learner.EnrollmentDate.ToString("d")</td>
+            <td><a asp-action="Details" asp-route-id="@learner.LearnerID">Details</a> | <a asp-action="Edit" asp-route-id="@learner.LearnerID">Edit</a> | <a asp-action="Delete" asp-route-id="@learner.LearnerID">Delete</a></td>
+        </tr>
+    }
+    @if (!Model.Any()) { <tr><td colspan="6" class="text-center">Chưa có người học nào.</td></tr> }
+    </tbody>
+</table></div>
